@@ -7,7 +7,7 @@ import defaultMiddlewares from "./middlewares/default";
 const app: Express = express();
 if (!process.env.PORT) {
     let error = new Error("ENV_PORT_UNDEFINED");
-    throw new RunningErrors(app, error);
+    throw new RunningErrors(app, `${error}`);
 }
 const PORT: string = process.env.PORT;
 

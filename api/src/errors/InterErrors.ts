@@ -93,19 +93,15 @@ RATE_LIMIT_EXCEEDED: Quando o número de requisições ultrapassa o limite estab
 RATE_LIMIT_BLOCKED: Quando o acesso é bloqueado devido ao limite de taxa.
  */
 
-export interface ExtraData {
-    [key: string]: any;
-}
-
 export class InterErrors extends Error {
     private _title: string;
     private _origin: Function;
-    private _error: Error;
+    private _error: string;
     private _time: Date;
     private _filePath: string;
     private _extraData?: ExtraData;
 
-    constructor(title: string, origin: Function, error: Error, extraData?: ExtraData) {
+    constructor(title: string, origin: Function, error: string, extraData?: ExtraData) {
         super(title);
         this._title = title;
         this._origin = origin;
@@ -136,7 +132,7 @@ export class InterErrors extends Error {
 Title: ${this._title}
 Time: ${this._time.toISOString()}
 Origin: ${this._origin.name}
-Message: ${this._error.message}
+Message: ${this._error}
 Stack Trace:
 ${this.stack}
         `;
@@ -151,14 +147,14 @@ ${this.stack}
 }
 
 export class RunningErrors extends InterErrors {
-    constructor(origin: Function, error: Error) {
+    constructor(origin: Function, error: string) {
         super("API_RUNNING_ERR", origin, error);
         this.saveLog(this.formatLogContent());
     }
 }
 
 export class DatabaseErrors extends InterErrors {
-    constructor(origin: Function, error: Error, query?: string, params?: any[]) {
+    constructor(origin: Function, error: string, query?: string, params?: any[]) {
         const extraData: ExtraData = {};
         if (query) extraData.query = query;
         if (params) extraData.params = params;

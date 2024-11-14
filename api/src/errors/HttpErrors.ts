@@ -1,11 +1,11 @@
 export default class HttpErrors {
-    private _title: string;
-    private _message: string;
-    private _statusCode: number;
+    public title: string;
+    public message: string;
+    public statusCode: number;
     constructor(title: string, message: string, statusCode: number) {
-        this._title = title; 
-        this._message = message;
-        this._statusCode = statusCode;
+        this.title = title; 
+        this.message = message;
+        this.statusCode = statusCode;
     }
 }
 
@@ -18,5 +18,11 @@ export class BadRequest extends HttpErrors {
 export class NotFound extends HttpErrors {
     constructor(message: string) {
         super("Not Found", message, 404);
+    }
+}
+
+export class ServerError extends HttpErrors {
+    constructor(message: string) {
+        super("Server Error", message, 500);
     }
 }

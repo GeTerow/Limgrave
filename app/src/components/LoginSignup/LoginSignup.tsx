@@ -151,9 +151,9 @@ export const LoginSignup = () => {
                     className={action === "Login" ? "submit gray" : "submit"}
                     onClick={() => {
                         if (action === "Cadastro") {
-                            handleSubmit(); // Envia os dados se estiver no formulário de cadastro
+                            handleSubmit();
                         } else {
-                            setAction("Cadastro"); // Alterna para o formulário de cadastro
+                            setAction("Cadastro");
                         }
                     }}
                 >
@@ -163,9 +163,9 @@ export const LoginSignup = () => {
                     className={action === "Cadastro" ? "submit gray" : "submit"}
                     onClick={() => {
                         if (action === "Login") {
-                            handleSubmit(); // Envia os dados se estiver no formulário de login
+                            handleSubmit();
                         } else {
-                            setAction("Login"); // Alterna para o formulário de login
+                            setAction("Login");
                         }
                     }}
                 >
